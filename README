@@ -1,0 +1,22 @@
+hosts
+    记录各个节点的IP地址
+    一行记录一个IP地址，以#号开头将被注释掉
+
+start.sh
+    在各个节点上生成公钥私钥对
+    USAGE:./start.sh user password
+
+author.sh
+    将start.sh脚本中生成的公钥写入到authorized_keys中，并将其上传到各个节点上，最后更改该文件的权限
+    USAGE:./author.sh username
+    USAGE:./author.sh username password
+
+clean.sh
+    在已经免密码登陆的情况下，清除各个节点的授权文件
+    不是免密码登陆，需要手动输入密码
+    删除各个节点上的authorized_keys文件
+
+注意：
+    运行上述脚本依赖expect，使用man expect查看是否安装
+
+

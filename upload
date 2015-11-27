@@ -1,0 +1,19 @@
+#!/usr/bin/expect -f
+
+set timeout 2
+
+set name [lindex $argv 0]
+set node [lindex $argv 1]
+set pawd [lindex $argv 2]
+
+set src "/home/${name}/.ssh/authorized_keys"
+set des "/home/${name}/.ssh"
+
+spawn scp ${src} ${name}@${node}:${des}
+expect {
+    "*yes/no*" {send "yes\n";exp_continue}
+    "*password:" {send "$pawd\r"}
+}
+
+expect "*${name}@${node}*"
+
